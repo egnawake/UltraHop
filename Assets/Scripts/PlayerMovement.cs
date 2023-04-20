@@ -122,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
         if (startJump)
         {
             acceleration.y = jumpAcceleration * Mathf.Clamp(jumpChargeTime, 0.5f, 1.5f);
+            jumpChargeTime = 0f;
         }
         else
             acceleration.y = gravityAcceleration;
@@ -151,7 +152,6 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Max(velocity.y, maxFallVelocity);
 
         startJump = false;
-        jumpChargeTime = 0f;
     }
 
     private void UpdatePosition()
