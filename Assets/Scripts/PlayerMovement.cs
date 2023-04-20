@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float strafeAcceleration;
     [SerializeField] private float gravityAcceleration;
     [SerializeField] private float jumpAcceleration;
+    [SerializeField] private float horizontalJumpAcceleration;
     [SerializeField] private float maxForwardVelocity;
     [SerializeField] private float maxBackwardVelocity;
     [SerializeField] private float maxStrafeVelocity;
@@ -18,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private bool startJump;
     private float sinPI4;
+    private float jumpChargeTime;
+
+    public float JumpChargePower => jumpChargeTime;
 
     private void Start()
     {
@@ -26,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
         velocity = Vector3.zero;
         startJump = false;
         sinPI4 = Mathf.Sin(Mathf.PI / 4);
+        jumpChargeTime = 0f;
 
         HideCursor();
     }
@@ -50,8 +55,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckForJump()
     {
-        if (Input.GetButtonDown("Jump") && controller.isGrounded)
+        if (!controller.isGrounded) return;
+
+        if (Input.GetButton("Jump"))
+            jumpChargeTime += Time.deltaTime;
+        else if (Input.GetButtonUp("Jump"))
+        {
             startJump = true;
+        }
     }
 
     void FixedUpdate()
@@ -70,32 +81,48 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateForwardAcceleration()
     {
-        float forwardAxis = Input.GetAxis("Forward");
+        if (startJump)
+        {
+            acceleration.z = horizontalJumpAcceleration;
+        }
+        else if (controller.isGrounded)
+        {
+            float forwardAxis = Input.GetAxis("Forward");
 
-        if (forwardAxis > 0f)
-            acceleration.z = forwardAcceleration;
-        else if (forwardAxis < 0f)
-            acceleration.z = backwardAcceleration;
-        else
-            acceleration.z = 0f;
+            if (forwardAxis > 0f)
+                acceleration.z = forwardAcceleration;
+            else if (forwardAxis < 0f)
+                acceleration.z = backwardAcceleration;
+            else
+                acceleration.z = 0f;
+        }
     }
 
     private void UpdateStrafeAcceleration()
     {
-        float strafeAxis = Input.GetAxis("Strafe");
-
-        if (strafeAxis > 0f)
-            acceleration.x = strafeAcceleration;
-        else if (strafeAxis < 0f)
-            acceleration.x = -strafeAcceleration;
-        else
+        if (startJump)
+        {
             acceleration.x = 0f;
+        }
+        else if (controller.isGrounded)
+        {
+            float strafeAxis = Input.GetAxis("Strafe");
+
+            if (strafeAxis > 0f)
+                acceleration.x = strafeAcceleration;
+            else if (strafeAxis < 0f)
+                acceleration.x = -strafeAcceleration;
+            else
+                acceleration.x = 0f;
+        }
     }
 
     private void UpdateVerticalAcceleration()
     {
         if (startJump)
-            acceleration.y = jumpAcceleration;
+        {
+            acceleration.y = jumpAcceleration * Mathf.Clamp(jumpChargeTime, 0.5f, 1.5f);
+        }
         else
             acceleration.y = gravityAcceleration;
     }
@@ -124,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = Mathf.Max(velocity.y, maxFallVelocity);
 
         startJump = false;
+        jumpChargeTime = 0f;
     }
 
     private void UpdatePosition()
