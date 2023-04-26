@@ -86,7 +86,7 @@ public class Shroom : MonoBehaviour
 
     private void AttackPlayer()
     {
-
+        
     }
 
     private void Hide()
