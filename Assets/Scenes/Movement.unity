@@ -1262,7 +1262,7 @@ MonoBehaviour:
   barrelEnd: {fileID: 1562999837}
   shootRange: 20
   shootCooldown: 1
-  shootRenderTime: 0.6
+  shootRenderTime: 0.3
 --- !u!120 &1264533447
 LineRenderer:
   m_ObjectHideFlags: 0

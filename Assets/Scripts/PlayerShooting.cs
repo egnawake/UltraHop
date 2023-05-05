@@ -29,6 +29,8 @@ public class PlayerShooting : MonoBehaviour
             UpdateTarget();
             UpdateShoot();
         }
+
+        UpdateTongue();
     }
 
     private void UpdateTarget()
@@ -73,5 +75,18 @@ public class PlayerShooting : MonoBehaviour
         lineRenderer.SetPosition(1, shootTarget);
 
         lineRenderer.enabled = true;
+    }
+
+    private void UpdateTongue()
+    {
+        if (!lineRenderer.enabled) return;
+
+        lineRenderer.SetPosition(0, barrelEnd.position);
+
+        float pct = Mathf.Sin((currentShootRenderTime / shootRenderTime) * Mathf.PI);
+        Vector3 endPosition = Vector3.Lerp(barrelEnd.position,
+            shootTarget, pct);
+
+        lineRenderer.SetPosition(1, endPosition);
     }
 }
