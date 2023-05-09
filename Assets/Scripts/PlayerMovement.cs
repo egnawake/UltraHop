@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxStrafeVelocity;
     [SerializeField] private float maxFallVelocity;
     [SerializeField] private float rotationVelocityFactor;
+    [SerializeField] private ResourceBar jumpBar;
+    [SerializeField] private float maxJumpCharge;
 
     private CharacterController controller;
     private Vector3 acceleration;
@@ -31,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
         startJump = false;
         sinPI4 = Mathf.Sin(Mathf.PI / 4);
         jumpChargeTime = 0f;
+
+        jumpBar.SetFill(0);
 
         HideCursor();
     }
@@ -58,7 +62,11 @@ public class PlayerMovement : MonoBehaviour
         if (!controller.isGrounded) return;
 
         if (Input.GetButton("Jump"))
-            jumpChargeTime += Time.deltaTime;
+        {
+            jumpChargeTime = Mathf.Min(maxJumpCharge, jumpChargeTime + Time.deltaTime);
+
+            jumpBar.SetFill(jumpChargeTime / maxJumpCharge);
+        }           
         else if (Input.GetButtonUp("Jump"))
         {
             startJump = true;
@@ -123,6 +131,8 @@ public class PlayerMovement : MonoBehaviour
         {
             acceleration.y = jumpAcceleration * Mathf.Clamp(jumpChargeTime, 0.5f, 1.5f);
             jumpChargeTime = 0f;
+
+            jumpBar.SetFill(0);
         }
         else
             acceleration.y = gravityAcceleration;
