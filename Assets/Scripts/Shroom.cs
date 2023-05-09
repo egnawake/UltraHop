@@ -9,8 +9,13 @@ public class Shroom : MonoBehaviour
 
     [SerializeField] private float attackRange = 10f;
     [SerializeField] private float fearRange = 4f;
+    [SerializeField] private float reloadSpeed = 4f;
 
+    [SerializeField] private float timeSinceReload;
     [SerializeField] private bool veryScared = false;
+
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject model;
 
     private GameObject player;
 
@@ -57,7 +62,7 @@ public class Shroom : MonoBehaviour
 
         Transition Afraid2Attack = new Transition(
             () => (transform.position - player.transform.position).magnitude > fearRange && !veryScared,
-            () => Debug.Log("Revenge"),
+            () => model.SetActive(true),
             attackState
             );
 
@@ -65,7 +70,7 @@ public class Shroom : MonoBehaviour
 
         Transition Afraid2Idle = new Transition(
             () => (transform.position - player.transform.position).magnitude > attackRange && veryScared,
-            () => Debug.Log("I'm safe now"),
+            () => model.SetActive(true),
             idleState
             );
 
@@ -86,12 +91,18 @@ public class Shroom : MonoBehaviour
 
     private void AttackPlayer()
     {
-        
+        if (timeSinceReload <= reloadSpeed)
+            timeSinceReload += Time.deltaTime;
+        else
+        {
+            Instantiate(bullet, transform.position, transform.rotation);
+            timeSinceReload = 0;
+        }
     }
 
     private void Hide()
     {
-
+        model.SetActive(false);
     }
 
 }
