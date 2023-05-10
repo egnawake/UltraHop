@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private Vector3 acceleration;
     private Vector3 velocity;
+    private Quaternion movementDirection;
     private bool startJump;
     private float sinPI4;
     private float jumpChargeTime;
@@ -46,7 +47,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        UpdateRotation();
         CheckForJump();
     }
 
@@ -168,7 +168,14 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector3 motion = velocity * Time.fixedDeltaTime;
 
-        motion = transform.TransformVector(motion);
+        // Update movement direction only if player is grounded
+        if (controller.isGrounded)
+        {
+            Quaternion cameraOrientation = Camera.main.transform.rotation;
+            movementDirection = Quaternion.AngleAxis(cameraOrientation.eulerAngles.y, Vector3.up);
+        }
+
+        motion = movementDirection * motion;
 
         controller.Move(motion);
     }

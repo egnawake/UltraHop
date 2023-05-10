@@ -53,18 +53,11 @@ public class CameraControl : MonoBehaviour
 
     private void UpdateYaw()
     {
-        if (Input.GetMouseButton(1))
-        {
-            Vector3 rotation = transform.localEulerAngles;
+        Vector3 rotation = transform.localEulerAngles;
 
-            rotation.y += Input.GetAxis("Mouse X") * rotationVelocityFactor;
+        rotation.y += Input.GetAxis("Mouse X") * rotationVelocityFactor;
 
-            transform.localEulerAngles = rotation;
-        }
-        else
-        {
-            ResetYaw();
-        }
+        transform.localEulerAngles = rotation;
     }
 
     private void ResetYaw()
