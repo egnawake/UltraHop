@@ -1,29 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ResourceBar : MonoBehaviour
-
 {
     [SerializeField] private RectTransform barTransform;
 
     private float barMaxSize;
 
-
-
-
-    public void SetFill (float hpPercentage)
+    public void SetFill(float percentage)
     {
-       float size = hpPercentage * barMaxSize;
+       float size = percentage * barMaxSize;
 
        barTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, size);
     }
 
-
-    // Calls Start Method
-    private void Start()
+    private void Awake()
     {
         barMaxSize = barTransform.rect.width;
-
     }
 }
