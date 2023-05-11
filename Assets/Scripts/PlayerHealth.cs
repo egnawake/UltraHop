@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
 
     private float health;
+    private bool infiniteHealth = false;
 
     private void Start()
     {
@@ -15,6 +16,25 @@ public class PlayerHealth : MonoBehaviour
     }
 
     private void Update()
+    {
+        if (Input.GetButtonDown("Toggle Infinite Health"))
+        {
+            if (!infiniteHealth)
+            {
+                health = maxHealth;
+                healthBar.SetFill(1f);
+            }
+
+            infiniteHealth = !infiniteHealth;
+        }
+
+        if (!infiniteHealth)
+        {
+            UpdateHealth();
+        }
+    }
+
+    private void UpdateHealth()
     {
         // Update health
         health = health - healthLossRate * Time.deltaTime;
