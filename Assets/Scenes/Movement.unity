@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1163,6 +1163,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5961966689868515476, guid: e35a73f4cb271df41bdb1f79b0e4edac, type: 3}
   m_PrefabInstance: {fileID: 2805400193613641411}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1202881206 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 498242962022068424, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
+  m_PrefabInstance: {fileID: 498242962013970378}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1575428708
 GameObject:
   m_ObjectHideFlags: 0
@@ -1711,6 +1716,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 498242962022068424, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
+      propertyPath: m_Name
+      value: GFX
+      objectReference: {fileID: 0}
     - target: {fileID: 498242962373881912, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
       propertyPath: occlusionPivot
       value: 
@@ -1719,6 +1728,10 @@ PrefabInstance:
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 883450798}
+    - target: {fileID: 498242962941108232, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 1202881206}
     - target: {fileID: 498242962941108232, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
       propertyPath: jumpBar
       value: 

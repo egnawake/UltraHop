@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rotationVelocityFactor;
     [SerializeField] private ResourceBar jumpBar;
     [SerializeField] private float maxJumpCharge;
+    [SerializeField] private GameObject model;
 
     private CharacterController controller;
     private Vector3 acceleration;
@@ -48,13 +49,36 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         CheckForJump();
+
+        // Update movement direction only if player is grounded
+        if (controller.isGrounded)
+        {
+            Quaternion cameraOrientation = Camera.main.transform.rotation;
+            movementDirection = Quaternion.AngleAxis(cameraOrientation.eulerAngles.y, Vector3.up);
+            RotateModel();
+        }
     }
 
-    private void UpdateRotation()
+    private void RotateModel()
     {
-        float rotation = Input.GetAxis("Mouse X") * rotationVelocityFactor;
+        Quaternion rotation = model.transform.rotation;
 
-        transform.Rotate(0f, rotation, 0f);
+        Vector3 movementInput = new Vector3(Input.GetAxis("Strafe"), 0f,
+            Input.GetAxis("Forward"));
+
+        if (startJump)
+        {
+            rotation = movementDirection;
+        }
+        else if (movementInput.magnitude >= 0.01f)
+        {
+            // How much the model needs to rotate relative to the camera
+            float angle = Mathf.Atan2(movementInput.x, movementInput.z)
+                * Mathf.Rad2Deg;
+            rotation = Quaternion.AngleAxis(angle, Vector3.up) * movementDirection;
+        }
+
+        model.transform.rotation = rotation;
     }
 
     private void CheckForJump()
@@ -66,7 +90,7 @@ public class PlayerMovement : MonoBehaviour
             jumpChargeTime = Mathf.Min(maxJumpCharge, jumpChargeTime + Time.deltaTime);
 
             jumpBar.SetFill(jumpChargeTime / maxJumpCharge);
-        }           
+        }
         else if (Input.GetButtonUp("Jump"))
         {
             startJump = true;
@@ -167,13 +191,6 @@ public class PlayerMovement : MonoBehaviour
     private void UpdatePosition()
     {
         Vector3 motion = velocity * Time.fixedDeltaTime;
-
-        // Update movement direction only if player is grounded
-        if (controller.isGrounded)
-        {
-            Quaternion cameraOrientation = Camera.main.transform.rotation;
-            movementDirection = Quaternion.AngleAxis(cameraOrientation.eulerAngles.y, Vector3.up);
-        }
 
         motion = movementDirection * motion;
 

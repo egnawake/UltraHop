@@ -45,8 +45,6 @@ public class PlayerShooting : MonoBehaviour
             shootTarget = cameraTransform.position + cameraTransform.forward *
                 (shootRange + -cameraTransform.localPosition.z);
         }
-
-        weapon.LookAt(shootTarget);
     }
 
     private void UpdateShoot()
