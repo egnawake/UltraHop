@@ -13,20 +13,22 @@ public class Fly : MonoBehaviour
 
     [SerializeField] private float timeAtFlower;
 
-    private GameObject flower;
+    private Transform flower;
     private GameObject player;
 
     private StateMachine fsm;
 
+    public IReadOnlyList<Transform> Flowers { private get; set; }
+
     private void Awake()
     {
-        flower = GameObject.Find("Flower");
         player = GameObject.Find("Player");
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+        flower = Flowers[0];
 
         State idleState = new State("Idle", () => Debug.Log("Enter idle state"), Waiting, () => Debug.Log("Exit on idle state"));
 
