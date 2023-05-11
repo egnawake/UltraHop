@@ -664,10 +664,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cac5034d90f7bd4458972f7c77f31f32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
-  hpLossRate: 0.2
-  hpBar: {fileID: 0}
-  gameoverScreen: {fileID: 0}
+  maxHealth: 10
+  healthLossRate: 0.2
+  healthBar: {fileID: 0}
+  gameOverScreen: {fileID: 0}
 --- !u!1 &498242963040352807
 GameObject:
   m_ObjectHideFlags: 0

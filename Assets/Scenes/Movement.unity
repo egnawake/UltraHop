@@ -1728,6 +1728,10 @@ PrefabInstance:
       propertyPath: hpBar
       value: 
       objectReference: {fileID: 883450798}
+    - target: {fileID: 498242962941108226, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 883450798}
     - target: {fileID: 498242962941108232, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
       propertyPath: model
       value: 
