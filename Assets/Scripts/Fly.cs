@@ -83,7 +83,16 @@ public class Fly : MonoBehaviour
 
     private void MoveToNextFlower()
     {
-        //mover para a flower mais proxima
+        Transform closestFlower;
+        float distance;
+
+        foreach(Transform target in Flowers)
+        {
+            float distanceToFlower;
+
+            distanceToFlower = (transform.position - target.transform.position).magnitude;
+
+        }
     }
 
     private void Run()
