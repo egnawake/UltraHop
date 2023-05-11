@@ -22,10 +22,11 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetFill(health / maxHealth);
 
         // Game over condition
-        if (health == 0)
+        if (health <= 0)
         {
             gameOverScreen.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
+            Time.timeScale = 0f;
         }
     }
 }
