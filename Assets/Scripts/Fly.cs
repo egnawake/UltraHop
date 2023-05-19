@@ -12,9 +12,12 @@ public class Fly : MonoBehaviour
     [SerializeField] private float maxTimeAtFlower = 4f;
 
     [SerializeField] private float timeAtFlower;
+    [SerializeField] private float maxSpeed;
 
     private Transform flower;
     private GameObject player;
+    private Vector3 direction;
+    private Rigidbody rb;
 
     private StateMachine fsm;
 
@@ -23,11 +26,13 @@ public class Fly : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody>();
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+
         flower = Flowers[0];
 
         State idleState = new State("Idle", () => Debug.Log("Enter idle state"), Waiting, () => Debug.Log("Exit on idle state"));
@@ -38,7 +43,7 @@ public class Fly : MonoBehaviour
 
         Transition Idle2Wonder = new Transition(
             () => timeAtFlower >= maxTimeAtFlower,
-            () => Debug.Log("To the next flower"),
+            () => timeAtFlower = 0,
             wonderState
             );
 
@@ -83,8 +88,7 @@ public class Fly : MonoBehaviour
 
     private void MoveToNextFlower()
     {
-        Transform closestFlower;
-        float distance;
+        float distance = float.MaxValue;
 
         foreach(Transform target in Flowers)
         {
@@ -92,7 +96,14 @@ public class Fly : MonoBehaviour
 
             distanceToFlower = (transform.position - target.transform.position).magnitude;
 
+            if (distanceToFlower < distance)
+            {
+                distance = distanceToFlower;
+                flower = target;
+            }
         }
+
+        Move();
     }
 
     private void Run()
@@ -102,12 +113,12 @@ public class Fly : MonoBehaviour
 
     private void Waiting()
     {
-        if (timeAtFlower <= maxTimeAtFlower)
             timeAtFlower += Time.deltaTime;
-        else
-        {
-            timeAtFlower = 0;
-        }
     }
 
+    private void Move()
+    {
+        direction = flower.transform.position - gameObject.transform.position;
+        rb.velocity = direction.normalized * maxSpeed;
+    }
 }
