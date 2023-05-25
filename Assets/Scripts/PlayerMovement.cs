@@ -17,6 +17,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxJumpCharge;
     [SerializeField] private GameObject model;
 
+    [SerializeField] private float waterVelocityFactor;
+    [SerializeField] private LayerMask waterLayer;
+    [SerializeField] private Transform waterCheckTransform;
+    [SerializeField] private float waterCheckRadius;
+
     private CharacterController controller;
     private Vector3 acceleration;
     private Vector3 velocity;
@@ -166,6 +171,12 @@ public class PlayerMovement : MonoBehaviour
     {
         velocity += acceleration * Time.fixedDeltaTime;
 
+        // If we're in water, scale down velocity
+        if (Physics.CheckSphere(waterCheckTransform.position, waterCheckRadius, waterLayer))
+        {
+            velocity = velocity * waterVelocityFactor;
+        }
+
         if (acceleration.z == 0f || (acceleration.z * velocity.z < 0f))
             velocity.z = 0f;
         else if (acceleration.x == 0f)
@@ -195,5 +206,11 @@ public class PlayerMovement : MonoBehaviour
         motion = movementDirection * motion;
 
         controller.Move(motion);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(waterCheckTransform.position, waterCheckRadius);
     }
 }
