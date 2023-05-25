@@ -11,6 +11,7 @@ public class PlayerShooting : MonoBehaviour
     private Transform cameraTransform;
     private LineRenderer lineRenderer;
     private Vector3 shootTarget;
+    private Collider shootTargetCollider;
     private float currentShootCooldown;
     private float currentShootRenderTime;
 
@@ -39,6 +40,7 @@ public class PlayerShooting : MonoBehaviour
             out RaycastHit hitInfo))
         {
             shootTarget = hitInfo.point;
+            shootTargetCollider = hitInfo.collider;
         }
         else
         {
@@ -68,6 +70,15 @@ public class PlayerShooting : MonoBehaviour
     {
         currentShootCooldown = 0f;
         currentShootRenderTime = 0f;
+
+        if (shootTargetCollider != null)
+        {
+            Edible edible = shootTargetCollider.GetComponent<Edible>();
+            if (edible != null)
+            {
+                edible.BeEaten();
+            }
+        }
 
         lineRenderer.SetPosition(0, barrelEnd.position);
         lineRenderer.SetPosition(1, shootTarget);
