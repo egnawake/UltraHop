@@ -47,7 +47,7 @@ public class Fly : MonoBehaviour
 
         Transition Idle2Wonder = new Transition(
             () => timeAtFlower >= maxTimeAtFlower,
-            () => timeAtFlower = 0,
+            () => LeavingIddleState(),
             wonderState
             );
 
@@ -90,6 +90,12 @@ public class Fly : MonoBehaviour
 
     }
 
+    private void LeavingIddleState()
+    {
+        timeAtFlower = 0;
+        flower = Flowers[Random.Range(0, Flowers.Count - 1)];
+    }
+
     private void MoveToNextFlower()
     {
         if (!isNatural)
@@ -108,10 +114,6 @@ public class Fly : MonoBehaviour
                     flower = target;
                 }
             }
-        }
-        else
-        {
-            flower = Flowers[Random.Range(0, Flowers.Count - 1)];
         }
         Move();
     }
