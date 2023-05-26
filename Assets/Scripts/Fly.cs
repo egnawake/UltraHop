@@ -36,7 +36,7 @@ public class Fly : MonoBehaviour
     private void Start()
     {
 
-        flower = Flowers[0];
+        flower = Flowers[Random.Range(0, Flowers.Count - 1)];
         homeFlower = Flowers[Flowers.Count - 1];
 
         State idleState = new State("Idle", () => Debug.Log("Enter idle state"), Waiting, () => Debug.Log("Exit on idle state"));
