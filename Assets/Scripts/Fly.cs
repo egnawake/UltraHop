@@ -15,6 +15,7 @@ public class Fly : MonoBehaviour
     [SerializeField] private float maxSpeed;
 
     private Transform flower;
+    private Transform homeFlower;
     private GameObject player;
     private Vector3 direction;
     private Rigidbody rb;
@@ -34,6 +35,7 @@ public class Fly : MonoBehaviour
     {
 
         flower = Flowers[0];
+        homeFlower = Flowers[Flowers.Count - 1];
 
         State idleState = new State("Idle", () => Debug.Log("Enter idle state"), Waiting, () => Debug.Log("Exit on idle state"));
 
@@ -108,7 +110,8 @@ public class Fly : MonoBehaviour
 
     private void Run()
     {
-        //usar pathfinding de flower a flower a  tentar fugir do player
+        direction = homeFlower.transform.position - gameObject.transform.position;
+        rb.velocity = direction.normalized * maxSpeed;
     }
 
     private void Waiting()
