@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6872800884411738812}
   - component: {fileID: 9066555485568610904}
   - component: {fileID: 1731050904858342291}
+  - component: {fileID: 827919735237370024}
   m_Layer: 0
   m_Name: Fly
   m_TagString: Untagged
@@ -147,7 +148,7 @@ MonoBehaviour:
   fearRange: 8
   maxTimeAtFlower: 4
   timeAtFlower: 0
-  maxSpeed: 0
+  maxSpeed: 4
 --- !u!54 &1731050904858342291
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -164,3 +165,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &827919735237370024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4685048250646226013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b504cf05928bbb44ab45b9f502f6fea2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthRegenerated: 10
