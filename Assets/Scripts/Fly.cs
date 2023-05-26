@@ -36,7 +36,8 @@ public class Fly : MonoBehaviour
     private void Start()
     {
 
-        flower = Flowers[Random.Range(0, Flowers.Count - 1)];
+        PickNextFlower();
+
         homeFlower = Flowers[Flowers.Count - 1];
 
         State idleState = new State("Idle", () => Debug.Log("Enter idle state"), Waiting, () => Debug.Log("Exit on idle state"));
@@ -93,7 +94,7 @@ public class Fly : MonoBehaviour
     private void LeavingIddleState()
     {
         timeAtFlower = 0;
-        flower = Flowers[Random.Range(0, Flowers.Count - 1)];
+        PickNextFlower();
     }
 
     private void MoveToNextFlower()
@@ -116,6 +117,11 @@ public class Fly : MonoBehaviour
             }
         }
         Move();
+    }
+
+    private void PickNextFlower()
+    {
+        flower = Flowers[Random.Range(0, Flowers.Count)];
     }
 
     private void Run()
