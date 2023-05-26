@@ -144,9 +144,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d84ed19c49e21246958e2fe8d269606, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 10
-  fearRange: 4
-  reloadSpeed: 2
+  attackRange: 20
+  fearRange: 10
+  reloadSpeed: 1
   timeSinceReload: 0
   veryScared: 0
   bullet: {fileID: 7105445928743845234, guid: ffe3639db85d6594e9ad2730d9396a9c, type: 3}
