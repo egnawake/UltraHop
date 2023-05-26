@@ -149,6 +149,7 @@ MonoBehaviour:
   maxTimeAtFlower: 4
   timeAtFlower: 0
   maxSpeed: 4
+  isNatural: 1
 --- !u!54 &1731050904858342291
 Rigidbody:
   m_ObjectHideFlags: 0

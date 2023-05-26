@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using LibGameAI.FSMs;
+using Random = UnityEngine.Random;
 
 public class Fly : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class Fly : MonoBehaviour
 
     [SerializeField] private float timeAtFlower;
     [SerializeField] private float maxSpeed;
+    [SerializeField] private bool isNatural;
 
     private Transform flower;
     private Transform homeFlower;
@@ -90,21 +92,27 @@ public class Fly : MonoBehaviour
 
     private void MoveToNextFlower()
     {
-        float distance = float.MaxValue;
-
-        foreach(Transform target in Flowers)
+        if (!isNatural)
         {
-            float distanceToFlower;
+            float distance = float.MaxValue;
 
-            distanceToFlower = (transform.position - target.transform.position).magnitude;
-
-            if (distanceToFlower < distance)
+            foreach (Transform target in Flowers)
             {
-                distance = distanceToFlower;
-                flower = target;
+                float distanceToFlower;
+
+                distanceToFlower = (transform.position - target.transform.position).magnitude;
+
+                if (distanceToFlower < distance)
+                {
+                    distance = distanceToFlower;
+                    flower = target;
+                }
             }
         }
-
+        else
+        {
+            flower = Flowers[Random.Range(0, Flowers.Count - 1)];
+        }
         Move();
     }
 
