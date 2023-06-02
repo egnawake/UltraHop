@@ -626,7 +626,7 @@ MonoBehaviour:
   backwardAcceleration: -20
   strafeAcceleration: 25
   gravityAcceleration: -40
-  jumpAcceleration: 1500
+  jumpAcceleration: 800
   horizontalJumpAcceleration: 500
   maxForwardVelocity: 10
   maxBackwardVelocity: -8
