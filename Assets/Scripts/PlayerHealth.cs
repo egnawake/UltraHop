@@ -8,11 +8,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
 
     private float health;
-    private bool infiniteHealth = false;
+    private bool infiniteHealth;
 
     private void Start()
     {
         health = maxHealth;
+        infiniteHealth = false;
     }
 
     private void Update()
@@ -44,9 +45,9 @@ public class PlayerHealth : MonoBehaviour
         // Game over condition
         if (health <= 0)
         {
-            gameOverScreen.SetActive(true);
-            Cursor.lockState = CursorLockMode.None;
             Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+            gameOverScreen.SetActive(true);
         }
     }
 }

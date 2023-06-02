@@ -5,6 +5,11 @@ public class PauseController : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
 
+    public void Start()
+    {
+        Time.timeScale = 1f;
+    }
+
     public void Pause()
     {
         Time.timeScale = 0f;
@@ -27,6 +32,7 @@ public class PauseController : MonoBehaviour
     public void Restart()
     {
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
