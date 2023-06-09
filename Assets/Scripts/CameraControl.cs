@@ -14,6 +14,7 @@ public class CameraControl : MonoBehaviour
     [SerializeField] private float deocclusionSpeed;
     [SerializeField] private float deocclusionBuffer;
     [SerializeField] private Transform occlusionPivot;
+    [SerializeField] private PauseController pauseController;
 
     private Transform cameraTransform;
     private float zoomAcceleration;
@@ -31,10 +32,13 @@ public class CameraControl : MonoBehaviour
 
     private void Update()
     {
-        UpdatePitch();
-        UpdateYaw();
-        UpdateZoom();
-        PreventOcclusion();
+        if (!pauseController.IsPaused)
+        {
+            UpdatePitch();
+            UpdateYaw();
+            UpdateZoom();
+            PreventOcclusion();
+        }
     }
 
     private void UpdatePitch()
