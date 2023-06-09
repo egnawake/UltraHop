@@ -8,14 +8,17 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
     [SerializeField] private float timeAlive;
+    [SerializeField] private float damage = 5f;
 
     private GameObject player;
+    private PlayerHealth playerHealth;
     private Vector3 direction;
     private Rigidbody rb;
 
     void Awake()
     {
         player = GameObject.Find("Player");
+        playerHealth = player.GetComponent<PlayerHealth>();
     }
 
     private void Start()
@@ -40,6 +43,7 @@ public class Bullet : MonoBehaviour
         {
             Destroy(gameObject);
             Debug.Log("Hit player");
+            playerHealth.Damage(damage);
         }
         else
         {

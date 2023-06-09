@@ -10,6 +10,16 @@ public class PlayerHealth : MonoBehaviour
     private float health;
     private bool infiniteHealth;
 
+    public void Heal(float amount)
+    {
+        health = Mathf.Min(health + amount, maxHealth);
+    }
+
+    public void Damage(float amount)
+    {
+        health = Mathf.Max(health - amount, 0f);
+    }
+    
     private void Start()
     {
         health = maxHealth;

@@ -3527,9 +3527,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 534500074}
     - target: {fileID: 498242962941108226, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 498242962941108226, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
       propertyPath: gameOverScreen
       value: 
       objectReference: {fileID: 661292608}
+    - target: {fileID: 498242962941108226, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
+      propertyPath: healthLossRate
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 498242962941108232, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
       propertyPath: jumpBar
       value: 
@@ -3581,6 +3589,10 @@ PrefabInstance:
     - target: {fileID: 498242962941108233, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498242962941108236, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
+      propertyPath: shootRange
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 498242962941108340, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
       propertyPath: m_Name

@@ -14,6 +14,7 @@ public class PlayerShooting : MonoBehaviour
     private Collider shootTargetCollider;
     private float currentShootCooldown;
     private float currentShootRenderTime;
+    private PlayerHealth playerHealth;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class PlayerShooting : MonoBehaviour
         lineRenderer = GetComponentInChildren<LineRenderer>();
         currentShootCooldown = shootCooldown;
         currentShootRenderTime = shootRenderTime;
+        playerHealth = GetComponent<PlayerHealth>();
     }
 
     private void Update()
@@ -37,7 +39,7 @@ public class PlayerShooting : MonoBehaviour
     private void UpdateTarget()
     {
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward,
-            out RaycastHit hitInfo))
+            out RaycastHit hitInfo, shootRange))
         {
             shootTarget = hitInfo.point;
             shootTargetCollider = hitInfo.collider;
@@ -77,6 +79,8 @@ public class PlayerShooting : MonoBehaviour
             if (edible != null)
             {
                 edible.BeEaten();
+                float regen = edible.HealthRegenerated;
+                playerHealth.Heal(regen);
             }
         }
 
