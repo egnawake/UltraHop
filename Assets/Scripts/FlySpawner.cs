@@ -5,6 +5,8 @@ public class FlySpawner : MonoBehaviour
     [SerializeField] private Vector3 area = new Vector3(20f, 2f, 20f);
     [SerializeField] private Fly flyPrefab;
     [SerializeField] private WaypointTracker flowerTracker;
+    [SerializeField] private float maxFlySpawnTime;
+    [SerializeField] private float timeSinceLastSpawn;
 
     private void SpawnFly()
     {
@@ -28,10 +30,20 @@ public class FlySpawner : MonoBehaviour
 
     private void Update()
     {
+        /*if (timeSinceLastSpawn >= maxFlySpawnTime)
+        {
+            SpawnFly();
+            timeSinceLastSpawn = 0;
+        }*/
+
+
         if (Input.GetButtonDown("Spawn Fly"))
         {
             SpawnFly();
+            timeSinceLastSpawn = 0;
         }
+
+        //timeSinceLastSpawn += Time.deltaTime;
     }
 
     private void OnDrawGizmosSelected()
