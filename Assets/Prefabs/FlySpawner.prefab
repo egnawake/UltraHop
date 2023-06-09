@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5791756677335572921}
   - component: {fileID: 5791756677335572920}
+  - component: {fileID: 7889154700609571275}
   m_Layer: 0
   m_Name: FlySpawner
   m_TagString: Untagged
@@ -44,8 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e4cfafce7b8a064c8abacc968400619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 4685048250646226013, guid: 3da8e511cebd0dc4380740e09766aced, type: 3}
   area: {x: 20, y: 2, z: 20}
-  flyPrefab: {fileID: 9066555485568610904, guid: 3da8e511cebd0dc4380740e09766aced, type: 3}
-  flowerTracker: {fileID: 0}
-  maxFlySpawnTime: 5
-  timeSinceLastSpawn: 0
+  maxSpawnTime: 3
+  waypointTracker: {fileID: 0}
+--- !u!114 &7889154700609571275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5791756677335572902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8dc8ecdb4868534883ab5e8f1774d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLimit: 4

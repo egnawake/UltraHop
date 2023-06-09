@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class Fly : MonoBehaviour
 {
-
     [SerializeField] private float flowerDectionRange = 1f;
     [SerializeField] private float fearRange = 8f;
     [SerializeField] private float maxTimeAtFlower = 4f;
@@ -29,6 +28,7 @@ public class Fly : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player");
+
         rb = GetComponent<Rigidbody>();
     }
 

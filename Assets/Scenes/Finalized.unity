@@ -2493,7 +2493,15 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5791756677335572920, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 827919735237370024, guid: 3da8e511cebd0dc4380740e09766aced, type: 3}
+    - target: {fileID: 5791756677335572920, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
       propertyPath: flowerTracker
+      value: 
+      objectReference: {fileID: 1212198048}
+    - target: {fileID: 5791756677335572920, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
+      propertyPath: waypointTracker
       value: 
       objectReference: {fileID: 1212198048}
     - target: {fileID: 5791756677335572921, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
@@ -3041,6 +3049,7 @@ Transform:
   - {fileID: 1763179568}
   - {fileID: 1124336161}
   - {fileID: 1591639850}
+  - {fileID: 1701258857}
   m_Father: {fileID: 109154930}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3343,6 +3352,67 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 619710183335241624, guid: 31a0e8f0e0beab64abad3f95c2686b38, type: 3}
   m_PrefabInstance: {fileID: 1662352785}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1701258856
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1701258857}
+  - component: {fileID: 1701258858}
+  - component: {fileID: 1701258859}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1701258857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701258856}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.33, y: 0, z: 7.49}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1446220316}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1701258858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701258856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91b457d573831d14d8b61a61abf0957b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyPrefab: {fileID: 6157748967208306046, guid: 3ad4f44b43a966f42844d10961b10f95, type: 3}
+  area: {x: 15.24, y: 0, z: 7.2}
+  maxSpawnTime: 2
+--- !u!114 &1701258859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701258856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8dc8ecdb4868534883ab5e8f1774d66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyLimit: 2
 --- !u!1 &1757971518
 GameObject:
   m_ObjectHideFlags: 0
@@ -3522,6 +3592,10 @@ PrefabInstance:
       propertyPath: occlusionPivot
       value: 
       objectReference: {fileID: 856549867}
+    - target: {fileID: 498242962373881912, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
+      propertyPath: pauseController
+      value: 
+      objectReference: {fileID: 850387408}
     - target: {fileID: 498242962941108226, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
       propertyPath: healthBar
       value: 
@@ -3704,6 +3778,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5791756677335572920, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 827919735237370024, guid: 3da8e511cebd0dc4380740e09766aced, type: 3}
+    - target: {fileID: 5791756677335572920, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
       propertyPath: flowerTracker
       value: 
       objectReference: {fileID: 1212198048}
@@ -3711,6 +3789,10 @@ PrefabInstance:
       propertyPath: maxFlySpawnTime
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5791756677335572920, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
+      propertyPath: waypointTracker
+      value: 
+      objectReference: {fileID: 1212198048}
     - target: {fileID: 5791756677335572921, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4151,7 +4233,15 @@ PrefabInstance:
       value: FlySpawner
       objectReference: {fileID: 0}
     - target: {fileID: 5791756677335572920, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
+      propertyPath: enemyPrefab
+      value: 
+      objectReference: {fileID: 827919735237370024, guid: 3da8e511cebd0dc4380740e09766aced, type: 3}
+    - target: {fileID: 5791756677335572920, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
       propertyPath: flowerTracker
+      value: 
+      objectReference: {fileID: 1212198048}
+    - target: {fileID: 5791756677335572920, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
+      propertyPath: waypointTracker
       value: 
       objectReference: {fileID: 1212198048}
     - target: {fileID: 5791756677335572921, guid: 8bf565dbdf2d05c4482e08ce42d9847b, type: 3}
