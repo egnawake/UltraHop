@@ -8,7 +8,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float maxSpawnTime;
 
     public Edible LastSpawnedEnemy => lastSpawnedEnemy;
-    public UnityEvent OnSpawn => onSpawn;
+    public EatenEvent OnSpawn => onSpawn;
 
     protected Edible lastSpawnedEnemy;
 
@@ -16,14 +16,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        onSpawn = new UnityEvent();
+        onSpawn = new EatenEvent();
     }
 
     protected virtual void Spawn()
     {
         Vector3 position = RandomPointInBox();
         lastSpawnedEnemy = Instantiate(enemyPrefab, position, Quaternion.identity);
-        onSpawn.Invoke();
+        onSpawn.Invoke(lastSpawnedEnemy);
     }
 
     private Vector3 RandomPointInBox()
@@ -55,5 +55,5 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.DrawWireCube(transform.position, area);
     }
 
-    private UnityEvent onSpawn;
+    private EatenEvent onSpawn;
 }

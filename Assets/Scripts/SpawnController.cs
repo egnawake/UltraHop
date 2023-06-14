@@ -19,7 +19,7 @@ public class SpawnController : MonoBehaviour
         spawner.OnSpawn.AddListener(HandleSpawn);
     }
 
-    private void HandleSpawn()
+    private void HandleSpawn(Edible enemy)
     {
         enemies.Add(spawner.LastSpawnedEnemy);
         spawner.LastSpawnedEnemy.OnEaten.AddListener(HandleEnemyDeath);

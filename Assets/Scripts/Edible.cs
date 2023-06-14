@@ -3,10 +3,12 @@ using UnityEngine.Events;
 
 public class Edible : MonoBehaviour
 {
+    [SerializeField] private string edibleTag;
     [SerializeField] private float healthRegenerated = 10f;
 
     public float HealthRegenerated => healthRegenerated;
     public EatenEvent OnEaten => onEaten;
+    public string EdibleTag => edibleTag;
 
     public void BeEaten()
     {

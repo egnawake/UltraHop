@@ -247,4 +247,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b504cf05928bbb44ab45b9f502f6fea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  edibleTag: shroom
   healthRegenerated: 0

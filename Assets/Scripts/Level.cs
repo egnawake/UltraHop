@@ -1,33 +1,20 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 
 public class Level : MonoBehaviour
 {
-    [SerializeField] private Edible[] targets;
-
-    private ISet<Edible> toBeEaten;
+    [SerializeField] private GameObject levelCompleteScreen;
 
     private void Start()
     {
-        toBeEaten = new HashSet<Edible>(targets);
-
-        foreach (Edible e in targets)
-        {
-            e.OnEaten.AddListener(HandleTargetEaten);
-        }
+        IGoal goal = GetComponent<IGoal>();
+        goal.OnAchieved.AddListener(HandleGoalAchieved);
     }
 
-    private void HandleTargetEaten(Edible target)
+    private void HandleGoalAchieved()
     {
-        toBeEaten.Remove(target);
-
-        if (toBeEaten.Count <= 0)
-        {
-            Debug.Log("Level complete!");
-            SceneManager.LoadScene("LevelCompletion");
-        }
+        levelCompleteScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Time.timeScale = 0f;
     }
 }
