@@ -7,6 +7,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float shootRange;
     [SerializeField] private float shootCooldown;
     [SerializeField] private float shootRenderTime;
+    [SerializeField] private TargetOverlay targetOverlay;
 
     private Transform cameraTransform;
     private LineRenderer lineRenderer;
@@ -43,11 +44,13 @@ public class PlayerShooting : MonoBehaviour
         {
             shootTarget = hitInfo.point;
             shootTargetCollider = hitInfo.collider;
+            targetOverlay.Show(shootTargetCollider.transform);
         }
         else
         {
             shootTarget = cameraTransform.position + cameraTransform.forward *
                 (shootRange + -cameraTransform.localPosition.z);
+            targetOverlay.Hide();
         }
     }
 
