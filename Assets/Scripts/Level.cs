@@ -3,15 +3,48 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    [SerializeField] private GoalCombineMode goalCombineMode;
     [SerializeField] private GameObject levelCompleteScreen;
+
+    private IDictionary<IGoal, bool> completedGoals;
+
+    private void Awake()
+    {
+        completedGoals = new Dictionary<IGoal, bool>();
+    }
 
     private void Start()
     {
-        IGoal goal = GetComponent<IGoal>();
-        goal.OnAchieved.AddListener(HandleGoalAchieved);
+        IGoal[] goals = GetComponents<IGoal>();
+        foreach (IGoal g in goals)
+        {
+            completedGoals[g] = false;
+            g.OnAchieved.AddListener(HandleGoalAchieved);
+        }
     }
 
-    private void HandleGoalAchieved()
+    private void HandleGoalAchieved(IGoal goal)
+    {
+        completedGoals[goal] = true;
+
+        if (goalCombineMode == GoalCombineMode.Any)
+        {
+            FinishLevel();
+            return;
+        }
+
+        if (goalCombineMode == GoalCombineMode.All)
+        {
+            foreach (IGoal g in completedGoals.Keys)
+            {
+                if (!completedGoals[g]) return;
+            }
+
+            FinishLevel();
+        }
+    }
+
+    private void FinishLevel()
     {
         levelCompleteScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;

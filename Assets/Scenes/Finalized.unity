@@ -311,6 +311,7 @@ GameObject:
   - component: {fileID: 109154930}
   - component: {fileID: 109154931}
   - component: {fileID: 109154932}
+  - component: {fileID: 109154933}
   m_Layer: 0
   m_Name: World
   m_TagString: Untagged
@@ -349,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08f854df9e33c0b419f00ab5118048a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goalCombineMode: 1
   levelCompleteScreen: {fileID: 376802133}
 --- !u!114 &109154932
 MonoBehaviour:
@@ -364,6 +366,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyTag: shroom
   enemiesToKill: 5
+--- !u!114 &109154933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 109154929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dff547751cdb763489297c9890aecc66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  surviveTime: 5
 --- !u!1 &134142567
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,12 +10,12 @@ public class DefeatEnemiesGoal : MonoBehaviour, IGoal
     private EnemySpawner[] spawners;
     private IDictionary<string, int> enemyKillCounters;
 
-    public UnityEvent OnAchieved => onAchieved;
+    public GoalEvent OnAchieved => onAchieved;
 
     private void Awake()
     {
         enemyKillCounters = new Dictionary<string, int>();
-        onAchieved = new UnityEvent();
+        onAchieved = new GoalEvent();
     }
 
     private void Start()
@@ -40,7 +40,7 @@ public class DefeatEnemiesGoal : MonoBehaviour, IGoal
         if (enemyKillCounters.ContainsKey(enemyTag)
             && enemyKillCounters[enemyTag] >= enemiesToKill)
         {
-            onAchieved.Invoke();
+            onAchieved.Invoke(this);
         }
     }
 
@@ -49,5 +49,5 @@ public class DefeatEnemiesGoal : MonoBehaviour, IGoal
         e.OnEaten.AddListener(HandleEnemyDeath);
     }
 
-    private UnityEvent onAchieved;
+    private GoalEvent onAchieved;
 }
