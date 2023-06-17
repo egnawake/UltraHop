@@ -666,6 +666,9 @@ MonoBehaviour:
   shootCooldown: 1
   shootRenderTime: 0.3
   targetOverlay: {fileID: 0}
+  shootLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &498242962941108226
 MonoBehaviour:
   m_ObjectHideFlags: 0
