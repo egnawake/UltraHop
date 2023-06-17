@@ -8,6 +8,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private float shootCooldown;
     [SerializeField] private float shootRenderTime;
     [SerializeField] private TargetOverlay targetOverlay;
+    [SerializeField] private LayerMask shootLayerMask;
 
     private Transform cameraTransform;
     private LineRenderer lineRenderer;
@@ -40,7 +41,7 @@ public class PlayerShooting : MonoBehaviour
     private void UpdateTarget()
     {
         if (Physics.Raycast(cameraTransform.position, cameraTransform.forward,
-            out RaycastHit hitInfo, shootRange))
+            out RaycastHit hitInfo, shootRange, shootLayerMask))
         {
             shootTarget = hitInfo.point;
             shootTargetCollider = hitInfo.collider;
