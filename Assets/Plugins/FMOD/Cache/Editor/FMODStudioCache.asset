@@ -22,7 +22,7 @@ MonoBehaviour:
   - {fileID: 3174720276245801001}
   IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
@@ -48,10 +48,10 @@ MonoBehaviour:
   Banks:
   - {fileID: 3174720276245801001}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 1.2
   MaxDistance: 20
   Length: 500
 --- !u!114 &-6567639523775046342
@@ -102,10 +102,10 @@ MonoBehaviour:
   Banks:
   - {fileID: 3174720276245801001}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 1.2
   MaxDistance: 20
   Length: 400
 --- !u!114 &-4658514513699260283
@@ -129,10 +129,10 @@ MonoBehaviour:
   Banks:
   - {fileID: 3174720276245801001}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters: []
-  MinDistance: 1
+  MinDistance: 1.2
   MaxDistance: 20
   Length: 5400
 --- !u!114 &-4522200963334276108
@@ -183,10 +183,10 @@ MonoBehaviour:
   Banks:
   - {fileID: 3174720276245801001}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 1.2
   MaxDistance: 20
   Length: 433
 --- !u!114 &-2909145023888958944
@@ -279,7 +279,7 @@ MonoBehaviour:
   - {fileID: 3174720276245801001}
   StringsBanks:
   - {fileID: 6701241696980089080}
-  cacheTime: 638226334216781515
+  cacheTime: 638226444337227780
   cacheVersion: 131605
 --- !u!114 &2201953173739062206
 MonoBehaviour:
@@ -302,10 +302,10 @@ MonoBehaviour:
   Banks:
   - {fileID: 3174720276245801001}
   IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
+  Is3D: 1
+  IsOneShot: 0
   Parameters: []
-  MinDistance: 1
+  MinDistance: 1.2
   MaxDistance: 20
   Length: 7566
 --- !u!114 &2613066278190060920
@@ -377,10 +377,10 @@ MonoBehaviour:
   Path: ../../FmodFileUltraHop/FrogGameSounds/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638226334216761535
+  lastModified: 638226444337197800
   FileSizes:
   - Name: Desktop
-    Value: 2075648
+    Value: 2077536
   Exists: 1
 --- !u!114 &5926833966100277354
 MonoBehaviour:
@@ -451,7 +451,7 @@ MonoBehaviour:
   Path: ../../FmodFileUltraHop/FrogGameSounds/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638226334216781515
+  lastModified: 638226444337227780
   FileSizes:
   - Name: Desktop
     Value: 1382
@@ -477,9 +477,9 @@ MonoBehaviour:
   Banks:
   - {fileID: 3174720276245801001}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
+  MinDistance: 1.2
   MaxDistance: 20
   Length: 400

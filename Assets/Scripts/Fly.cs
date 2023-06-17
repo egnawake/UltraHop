@@ -21,6 +21,9 @@ public class Fly : MonoBehaviour
     private Vector3 direction;
     private Rigidbody rb;
 
+    private FMOD.Studio.EventInstance flyBuzz;
+    private FMOD.Studio.EventInstance flyWings;
+
     private StateMachine fsm;
 
     public IReadOnlyList<Transform> Flowers { private get; set; }
@@ -30,11 +33,17 @@ public class Fly : MonoBehaviour
         player = GameObject.Find("Player");
 
         rb = GetComponent<Rigidbody>();
+
+        flyBuzz = FMODUnity.RuntimeManager.CreateInstance("event:/FlyBzz");
+        flyWings = FMODUnity.RuntimeManager.CreateInstance("event:/FlyWings");
     }
 
     // Start is called before the first frame update
     private void Start()
     {
+
+        flyBuzz.start();
+        flyWings.start();
 
         PickNextFlower();
 

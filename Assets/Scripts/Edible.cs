@@ -13,6 +13,7 @@ public class Edible : MonoBehaviour
     public void BeEaten()
     {
         onEaten.Invoke(this);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/ShroomDeath", transform.position);
         Destroy(gameObject);
     }
 

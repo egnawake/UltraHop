@@ -24,6 +24,7 @@ public class Shroom : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player");
+
     }
 
     // Start is called before the first frame update
@@ -54,7 +55,7 @@ public class Shroom : MonoBehaviour
 
         Transition Attack2Afraid = new Transition(
             () => (transform.position - player.transform.position).magnitude < fearRange,
-            () => Debug.Log("I'm scared"),
+            () => FMODUnity.RuntimeManager.PlayOneShot("event:/ShroomFear", transform.position),
             afraidState
             );
 
@@ -96,6 +97,7 @@ public class Shroom : MonoBehaviour
         else
         {
             Instantiate(bullet, transform.position, transform.rotation);
+            FMODUnity.RuntimeManager.PlayOneShot("event:/EnemyAttack", transform.position);
             timeSinceReload = 0;
         }
     }

@@ -99,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetButtonUp("Jump"))
         {
             startJump = true;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Jump", transform.position);
         }
     }
 

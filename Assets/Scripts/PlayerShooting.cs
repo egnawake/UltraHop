@@ -91,6 +91,8 @@ public class PlayerShooting : MonoBehaviour
         lineRenderer.SetPosition(1, shootTarget);
 
         lineRenderer.enabled = true;
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Tongue", transform.position);
     }
 
     private void UpdateTongue()
