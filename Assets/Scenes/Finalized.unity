@@ -4466,6 +4466,10 @@ PrefabInstance:
       propertyPath: jumpAcceleration
       value: 800
       objectReference: {fileID: 0}
+    - target: {fileID: 498242962941108232, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
+      propertyPath: waterChargeSpeedMultiplier
+      value: 1.08
+      objectReference: {fileID: 0}
     - target: {fileID: 498242962941108233, guid: e6dd6ca6af8e2f14e874fbb43c35402a, type: 3}
       propertyPath: m_RootOrder
       value: 1

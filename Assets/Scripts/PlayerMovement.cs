@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject model;
 
     [SerializeField] private float waterVelocityFactor;
+    [SerializeField] private float waterChargeSpeedMultiplier = 2f;
     [SerializeField] private LayerMask waterLayer;
     [SerializeField] private Transform waterCheckTransform;
     [SerializeField] private float waterCheckRadius;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     private bool startJump;
     private float sinPI4;
     private float jumpChargeTime;
+    private bool inWater = false;
 
     public float JumpChargePower => jumpChargeTime;
 
@@ -62,6 +64,9 @@ public class PlayerMovement : MonoBehaviour
             movementDirection = Quaternion.AngleAxis(cameraOrientation.eulerAngles.y, Vector3.up);
             RotateModel();
         }
+
+        inWater = Physics.CheckSphere(waterCheckTransform.position,
+            waterCheckRadius, waterLayer);
     }
 
     private void RotateModel()
@@ -92,15 +97,21 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButton("Jump"))
         {
-            jumpChargeTime = Mathf.Min(maxJumpCharge, jumpChargeTime + Time.deltaTime);
+            jumpChargeTime = Mathf.Min(maxJumpCharge,
+                (jumpChargeTime + Time.deltaTime) * (inWater ? waterChargeSpeedMultiplier : 1f));
 
             jumpBar.SetFill(jumpChargeTime / maxJumpCharge);
         }
         else if (Input.GetButtonUp("Jump"))
         {
-            startJump = true;
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Jump", transform.position);
+            BeginJump();
         }
+    }
+
+    private void BeginJump()
+    {
+        startJump = true;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Jump", transform.position);
     }
 
     void FixedUpdate()
