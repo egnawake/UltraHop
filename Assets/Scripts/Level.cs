@@ -7,6 +7,7 @@ public class Level : MonoBehaviour
     [SerializeField] private GameObject levelCompleteScreen;
     [SerializeField] private GoalDisplay goalDisplayPrefab;
     [SerializeField] private Transform goalDisplayRoot;
+    [SerializeField] private int currentLevel;
 
     private IDictionary<IGoal, bool> completedGoals;
 
@@ -55,6 +56,6 @@ public class Level : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
 
-        SaveLoad.LevelProgress = 2;
+        SaveLoad.LevelProgress = currentLevel;
     }
 }
