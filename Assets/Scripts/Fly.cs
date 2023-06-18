@@ -15,11 +15,14 @@ public class Fly : MonoBehaviour
     [SerializeField] private float maxSpeed;
     [SerializeField] private bool isNatural;
 
+    [SerializeField] private float stateHoldTime = 1.5f;
+
     private Transform flower;
     private Transform homeFlower;
     private GameObject player;
     private Vector3 direction;
     private Rigidbody rb;
+    private float holdTimer = 0f;
 
     private FMOD.Studio.EventInstance flyBuzz;
     private FMOD.Studio.EventInstance flyWings;
@@ -49,11 +52,11 @@ public class Fly : MonoBehaviour
 
         homeFlower = Flowers[Flowers.Count - 1];
 
-        State idleState = new State("Idle", () => Debug.Log("Enter idle state"), Waiting, () => Debug.Log("Exit on idle state"));
+        State idleState = new State("Idle", null, Waiting, null);
 
-        State wonderState = new State("Wonder", () => Debug.Log("Enter wonder state"), MoveToNextFlower, () => Debug.Log("Exit on wonder state"));
+        State wonderState = new State("Wonder", null, MoveToNextFlower, null);
 
-        State afraidState = new State("Afraid", () => Debug.Log("Enter afraid state"), Run, () => Debug.Log("Exit on afraid state"));
+        State afraidState = new State("Afraid", ResetHoldTimer, Run, null);
 
         Transition Idle2Wonder = new Transition(
             () => timeAtFlower >= maxTimeAtFlower,
@@ -65,23 +68,23 @@ public class Fly : MonoBehaviour
 
         Transition Wonder2Idle = new Transition(
             () => (transform.position - flower.transform.position).magnitude < flowerDectionRange,
-            () => Debug.Log("Arrived at flower"),
+            StopMoving,
             idleState
             );
 
         wonderState.AddTransition(Wonder2Idle);
 
         Transition Wonder2Afraid = new Transition(
-            () => (transform.position - player.transform.position).magnitude < fearRange,
-            () => Debug.Log("You're too close!"),
+            ShouldRun,
+            null,
             afraidState
             );
 
         wonderState.AddTransition(Wonder2Afraid);
 
         Transition Afraid2Wonder = new Transition(
-            () => (transform.position - player.transform.position).magnitude > fearRange,
-            () => Debug.Log("I'm safe, next flower!"),
+            ShouldWander,
+            null,
             wonderState
             );
 
@@ -137,16 +140,43 @@ public class Fly : MonoBehaviour
     {
         direction = homeFlower.transform.position - gameObject.transform.position;
         rb.velocity = direction.normalized * maxSpeed;
+
+        holdTimer += Time.deltaTime;
     }
 
     private void Waiting()
     {
-            timeAtFlower += Time.deltaTime;
+        timeAtFlower += Time.deltaTime;
     }
 
     private void Move()
     {
         direction = flower.transform.position - gameObject.transform.position;
         rb.velocity = direction.normalized * maxSpeed;
+    }
+
+    private bool ShouldWander()
+    {
+        bool playerIsAway = (transform.position - player.transform.position).magnitude > fearRange;
+        bool minTimeHasPassed = holdTimer > stateHoldTime;
+
+        return minTimeHasPassed && playerIsAway;
+    }
+
+    private bool ShouldRun()
+    {
+        bool playerIsNearby = (transform.position - player.transform.position).magnitude <= fearRange;
+
+        return playerIsNearby;
+    }
+
+    private void StopMoving()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
+    private void ResetHoldTimer()
+    {
+        holdTimer = 0f;
     }
 }
