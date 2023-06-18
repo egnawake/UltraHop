@@ -14,6 +14,7 @@ public class Edible : MonoBehaviour
     {
         onEaten.Invoke(this);
         FMODUnity.RuntimeManager.PlayOneShot("event:/ShroomDeath", transform.position);
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/FlyDeath", transform.position);
         Destroy(gameObject);
     }
 
