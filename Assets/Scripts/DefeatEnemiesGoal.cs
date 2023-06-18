@@ -11,6 +11,17 @@ public class DefeatEnemiesGoal : MonoBehaviour, IGoal
     private IDictionary<string, int> enemyKillCounters;
 
     public GoalEvent OnAchieved => onAchieved;
+    public GoalDisplay Display
+    {
+        set
+        {
+            display = value;
+            display.SetInfo($"Defeat {enemiesToKill} {enemyTag}!");
+            display.SetProgress($"0 / {enemiesToKill}");
+        }
+    }
+
+    private GoalDisplay display;
 
     private void Awake()
     {
@@ -35,7 +46,7 @@ public class DefeatEnemiesGoal : MonoBehaviour, IGoal
             enemyKillCounters[id] = 0;
         enemyKillCounters[id] += 1;
 
-        Debug.Log($"Enemy killed: <{id}>: {enemyKillCounters[id]}");
+        display.SetProgress($"{enemyKillCounters[enemyTag]} / {enemiesToKill}");
 
         if (enemyKillCounters.ContainsKey(enemyTag)
             && enemyKillCounters[enemyTag] >= enemiesToKill)

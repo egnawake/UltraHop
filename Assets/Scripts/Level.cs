@@ -5,6 +5,8 @@ public class Level : MonoBehaviour
 {
     [SerializeField] private GoalCombineMode goalCombineMode;
     [SerializeField] private GameObject levelCompleteScreen;
+    [SerializeField] private GoalDisplay goalDisplayPrefab;
+    [SerializeField] private Transform goalDisplayRoot;
 
     private IDictionary<IGoal, bool> completedGoals;
 
@@ -20,6 +22,9 @@ public class Level : MonoBehaviour
         {
             completedGoals[g] = false;
             g.OnAchieved.AddListener(HandleGoalAchieved);
+
+            GoalDisplay goalDisplay = Instantiate(goalDisplayPrefab, goalDisplayRoot);
+            g.Display = goalDisplay;
         }
     }
 
