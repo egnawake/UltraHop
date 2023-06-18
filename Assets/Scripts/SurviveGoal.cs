@@ -8,6 +8,17 @@ public class SurviveGoal : MonoBehaviour, IGoal
     private float timer;
 
     public GoalEvent OnAchieved => onAchieved;
+    public GoalDisplay Display
+    {
+        set
+        {
+            display = value;
+            display.SetInfo($"Survive for {surviveTime} seconds!");
+            display.SetProgress("0");
+        }
+    }
+
+    private GoalDisplay display;
 
     private void Awake()
     {
@@ -23,6 +34,8 @@ public class SurviveGoal : MonoBehaviour, IGoal
         }
 
         timer += Time.deltaTime;
+
+        display.SetProgress(Mathf.Floor(timer).ToString());
     }
 
     private GoalEvent onAchieved;
