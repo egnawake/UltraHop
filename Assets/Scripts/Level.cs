@@ -49,5 +49,7 @@ public class Level : MonoBehaviour
         levelCompleteScreen.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Time.timeScale = 0f;
+
+        SaveLoad.LevelProgress = 2;
     }
 }
