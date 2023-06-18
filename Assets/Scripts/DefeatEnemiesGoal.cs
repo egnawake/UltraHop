@@ -46,7 +46,10 @@ public class DefeatEnemiesGoal : MonoBehaviour, IGoal
             enemyKillCounters[id] = 0;
         enemyKillCounters[id] += 1;
 
-        display.SetProgress($"{enemyKillCounters[enemyTag]} / {enemiesToKill}");
+        if (enemyKillCounters.ContainsKey(enemyTag))
+        {
+            display.SetProgress($"{enemyKillCounters[enemyTag]} / {enemiesToKill}");
+        }
 
         if (enemyKillCounters.ContainsKey(enemyTag)
             && enemyKillCounters[enemyTag] >= enemiesToKill)
