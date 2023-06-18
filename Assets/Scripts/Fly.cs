@@ -56,7 +56,9 @@ public class Fly : MonoBehaviour
 
         State wonderState = new State("Wonder", null, MoveToNextFlower, null);
 
-        State afraidState = new State("Afraid", ResetHoldTimer, Run, null);
+        Action afraidActions = ResetHoldTimer;
+        afraidActions += SetRunDirection;
+        State afraidState = new State("Afraid", afraidActions, Run, null);
 
         Transition Idle2Wonder = new Transition(
             () => timeAtFlower >= maxTimeAtFlower,
@@ -138,7 +140,6 @@ public class Fly : MonoBehaviour
 
     private void Run()
     {
-        direction = homeFlower.transform.position - gameObject.transform.position;
         rb.velocity = direction.normalized * maxSpeed;
 
         holdTimer += Time.deltaTime;
@@ -178,5 +179,18 @@ public class Fly : MonoBehaviour
     private void ResetHoldTimer()
     {
         holdTimer = 0f;
+    }
+
+    private void SetRunDirection()
+    {
+        Vector3 dir = transform.position - player.transform.position;
+        float dot = Vector3.Dot(dir, Vector3.up);
+
+        if (dot < 0)
+        {
+            dir = new Vector3(dir.x, 0f, dir.z).normalized;
+        }
+
+        direction = dir;
     }
 }
