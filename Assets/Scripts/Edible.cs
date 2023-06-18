@@ -17,7 +17,7 @@ public class Edible : MonoBehaviour
         //FMODUnity.RuntimeManager.PlayOneShot("event:/FlyDeath", transform.position);
         Destroy(gameObject);
     }
-
+    
     private void Awake()
     {
         onEaten = new EatenEvent();
