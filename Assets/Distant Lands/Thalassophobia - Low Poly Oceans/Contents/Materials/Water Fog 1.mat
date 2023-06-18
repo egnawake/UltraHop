@@ -2,14 +2,15 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Water Fog 1
   m_Shader: {fileID: 4800000, guid: 6490db4c7a37d8349b85b261b7ff5cea, type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -59,6 +60,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - LightIntensity: 1.21
     - _BumpScale: 1
@@ -93,11 +95,12 @@ Material:
     - _DeepColor: {r: 0, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FogColor: {r: 0.03720184, g: 0.26307723, b: 0.41509432, a: 0}
-    - _FogColor1: {r: 0.09411765, g: 0.29024056, b: 0.29411766, a: 0}
-    - _FogColor2: {r: 0.03921568, g: 0.19959265, b: 0.20784314, a: 0.13333334}
-    - _FogColor3: {r: 0.03921568, g: 0.22745098, b: 0.22044002, a: 0.27450982}
-    - _FogColor4: {r: 0.011764703, g: 0.13874215, b: 0.14117648, a: 0.5372549}
-    - _FogColor5: {r: 0, g: 0.12985136, b: 0.14150941, a: 1}
-    - _LightColor: {r: 0.50980395, g: 1.4980392, b: 1.1843809, a: 0}
+    - _FogColor1: {r: 0.6925507, g: 0.7430858, b: 0.745283, a: 0}
+    - _FogColor2: {r: 0.6198825, g: 0.65792316, b: 0.6603774, a: 0.13333334}
+    - _FogColor3: {r: 0.49092203, g: 0.5283019, b: 0.5256319, a: 0.27450982}
+    - _FogColor4: {r: 0.25520647, g: 0.2895877, b: 0.2924528, a: 0.5372549}
+    - _FogColor5: {r: 0.24296905, g: 0.5256542, b: 0.5660378, a: 1}
+    - _LightColor: {r: 1.1545033, g: 1.735849, b: 1.5559087, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SurfaceColor: {r: 0.3137255, g: 1.8352941, b: 2, a: 0}
+  m_BuildTextureStacks: []
