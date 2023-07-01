@@ -355,6 +355,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goalCombineMode: 1
   levelCompleteScreen: {fileID: 376802133}
+  goalDisplayPrefab: {fileID: 0}
+  goalDisplayRoot: {fileID: 0}
+  currentLevel: 0
 --- !u!114 &109154932
 MonoBehaviour:
   m_ObjectHideFlags: 0

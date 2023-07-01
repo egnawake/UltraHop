@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform waterCheckTransform;
     [SerializeField] private float waterCheckRadius;
 
+    private Animator m_Animator;
     private CharacterController controller;
     private Vector3 acceleration;
     private Vector3 velocity;
@@ -36,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        m_Animator = gameObject.GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
         acceleration = Vector3.zero;
         velocity = Vector3.zero;
@@ -67,6 +69,11 @@ public class PlayerMovement : MonoBehaviour
 
         inWater = Physics.CheckSphere(waterCheckTransform.position,
             waterCheckRadius, waterLayer);
+
+        if (inWater)
+            m_Animator.SetBool("IsInWater", true);
+        else
+            m_Animator.SetBool("IsInWater", false);
     }
 
     private void RotateModel()
@@ -101,6 +108,8 @@ public class PlayerMovement : MonoBehaviour
                 (jumpChargeTime + Time.deltaTime) * (inWater ? waterChargeSpeedMultiplier : 1f));
 
             jumpBar.SetFill(jumpChargeTime / maxJumpCharge);
+
+            m_Animator.SetBool("ChargingJump", true);
         }
         else if (Input.GetButtonUp("Jump"))
         {
@@ -112,6 +121,8 @@ public class PlayerMovement : MonoBehaviour
     {
         startJump = true;
         FMODUnity.RuntimeManager.PlayOneShot("event:/Jump", transform.position);
+        m_Animator.SetBool("ChargingJump", false);
+        m_Animator.SetTrigger("Jump");
     }
 
     void FixedUpdate()
@@ -137,6 +148,8 @@ public class PlayerMovement : MonoBehaviour
         else if (controller.isGrounded)
         {
             float forwardAxis = Input.GetAxis("Forward");
+
+            m_Animator.SetBool("IsMoving", true);
 
             if (forwardAxis > 0f)
                 acceleration.z = forwardAcceleration;
