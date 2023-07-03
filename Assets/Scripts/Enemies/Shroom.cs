@@ -18,12 +18,14 @@ public class Shroom : MonoBehaviour
     [SerializeField] private GameObject model;
 
     private GameObject player;
+    private Animator m_Animator;
 
     private StateMachine fsm;
 
     private void Awake()
     {
         player = GameObject.Find("Player");
+        m_Animator = gameObject.GetComponent<Animator>();
 
     }
 
@@ -35,7 +37,7 @@ public class Shroom : MonoBehaviour
 
         State attackState = new State("Attack", () => Debug.Log("Enter attack state"), AttackPlayer, () => Debug.Log("Exit on attack state"));
 
-        State afraidState = new State("Afraid", () => Debug.Log("Enter afraid state"), Hide, () => Debug.Log("Exit on afraid state"));
+        State afraidState = new State("Afraid", () => m_Animator.SetBool("Afraid", true), Hide, () => m_Animator.SetBool("Afraid", false));
 
         Transition Idle2Attack = new Transition(
             () => (transform.position - player.transform.position).magnitude < attackRange,
@@ -104,7 +106,7 @@ public class Shroom : MonoBehaviour
 
     private void Hide()
     {
-        model.SetActive(false);
+        //model.SetActive(false);
     }
 
 }

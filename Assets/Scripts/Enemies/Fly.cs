@@ -27,6 +27,8 @@ public class Fly : MonoBehaviour
     private FMOD.Studio.EventInstance flyBuzz;
     private FMOD.Studio.EventInstance flyWings;
 
+    private Animator m_Animator;
+
     private StateMachine fsm;
 
     public IReadOnlyList<Transform> Flowers { private get; set; }
@@ -34,6 +36,8 @@ public class Fly : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player");
+
+        m_Animator = gameObject.GetComponent<Animator>();
 
         rb = GetComponent<Rigidbody>();
 

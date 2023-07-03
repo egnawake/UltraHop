@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9066555485568610904}
   - component: {fileID: 1731050904858342291}
   - component: {fileID: 827919735237370024}
+  - component: {fileID: 4147395268090664447}
   m_Layer: 6
   m_Name: FlyLv2
   m_TagString: Untagged
@@ -98,6 +99,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   edibleTag: fly
   healthRegenerated: 20
+--- !u!95 &4147395268090664447
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4685048250646226013}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9923ecb065a33574f94333f29342a135, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &2152273849813309028
 PrefabInstance:
   m_ObjectHideFlags: 0
