@@ -74,6 +74,23 @@ public class PlayerMovement : MonoBehaviour
             m_Animator.SetBool("IsInWater", true);
         else
             m_Animator.SetBool("IsInWater", false);
+
+        if (!controller.isGrounded && acceleration.y < 0)
+            m_Animator.SetBool("Falling", true);
+        else
+            m_Animator.SetBool("Falling", false);
+
+        if (controller.isGrounded && acceleration.y >= 0)
+        {
+            m_Animator.SetBool("Falling", false);
+            m_Animator.SetBool("InFloor", true);
+        }
+        
+        if (velocity.x != 0 || velocity.z != 0)
+            m_Animator.SetBool("IsMoving", true);
+        if (velocity.x == 0 && velocity.z == 0)
+            m_Animator.SetBool("IsMoving", false);
+
     }
 
     private void RotateModel()
@@ -110,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
             jumpBar.SetFill(jumpChargeTime / maxJumpCharge);
 
             m_Animator.SetBool("ChargingJump", true);
+            m_Animator.SetBool("InFloor", false);
         }
         else if (Input.GetButtonUp("Jump"))
         {
@@ -149,7 +167,7 @@ public class PlayerMovement : MonoBehaviour
         {
             float forwardAxis = Input.GetAxis("Forward");
 
-            m_Animator.SetBool("IsMoving", true);
+            //m_Animator.SetBool("IsMoving", true);
 
             if (forwardAxis > 0f)
                 acceleration.z = forwardAcceleration;
